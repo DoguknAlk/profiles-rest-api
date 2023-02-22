@@ -3,3 +3,4 @@ from profiles_api import models
 
 
 admin.site.register(models.UserProfile)
+admin.site.register(models.ProfileFeedItem) #After this we must serialize prfoile feed item by going serializers.py
