@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
+from django.conf import settings
 
 
 class UserProfileManager(BaseUserManager):
@@ -55,3 +56,23 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         """Return string representation of our user"""
         return self.email
+
+class ProfileFeedItem(models.Model): #Main class for items
+    """Profile status update"""
+    user_profile = models.ForeignKey( #We use foreignKey to associate the item with UserProfile
+        settings.AUTH_USER_MODEL, # we need to use this so that If there is a change in UserProfile we will not need to change it manually.
+        on_delete=models.CASCADE # If the profile associated to item removed, remove the item. 
+    )
+    status_text = models.CharField(max_length=255) 
+    created_on = models.DateTimeField(auto_now_add=True) #When an Item created automatically add time stant when It is created
+    def __str__(self):
+        """Return the model as a string"""
+        return self.status_text
+
+    # After typing this we have to migrate the data.
+    # In git, after we activate virtual environment, we should write:
+    # "python manage.py makemigrations"
+    # After this new migration file should be created. To apply write:
+    # "python manage.py migrate"
+
+    # Next register to admin by going admin.py
