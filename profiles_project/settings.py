@@ -26,7 +26,7 @@ SECRET_KEY = 'zslll5u-tv37_6pg)b8b5gk%4ciji=qy^153u6969n$g_*k4-7'
 # DEBUG = True
 DEBUG = bool(int(os.environ.get('DEBUG', 1))) #In deploy setup debug is 0 so we can still use debug mode on local machine but not on server
 
-ALLOWED_HOSTS = ['ec2-3-125-4-2.eu-central-1.compute.amazonaws.com', 
+ALLOWED_HOSTS = ['ec2-54-93-99-19.eu-central-1.compute.amazonaws.com', 
 '127.0.0.1'
 ]
 
